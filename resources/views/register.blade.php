@@ -61,7 +61,9 @@
                     })
                     .then(data => {
                         alert('Account Register successfully');
+                        window.location.href = '/';
                     })
+                    
                     .catch(error => {
                         console.error('Error:', error);
                         alert('Failed to register account. Please try again later.');

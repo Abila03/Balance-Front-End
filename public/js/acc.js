@@ -16,7 +16,7 @@ fetch('https://balance-back-end-production.up.railway.app/api/artikel')
                         <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="images/article 1.png" alt="..." />
                             <div class="intro-text text-right bg-faded p-5 rounded ">
                                 <button class="btn btn-danger" onclick="deleteArticle(${artikel.id_artikel})">
-                                    Sampah
+                                    Hapus
                                 </button>
                                 <button class="btn btn-primary text-white" onclick='showEditForm(${JSON.stringify(artikel)})'>
                                     Edit

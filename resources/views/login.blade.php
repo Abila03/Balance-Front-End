@@ -7,7 +7,7 @@
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card border-0  "style="background-color: transparent;">
           <div class="card-body p-4 p-sm-5">
-            <img class="" src="images/logo.png" alt="..." style="width: 350px"/>
+            <img class="" src="images/logo.png" alt="..." style="width: 440px"/>
             <p class=" text-center mb-3 fw-light fs-5 text-black">Log In</p>
             <form class="login-form" id="loginForm">
               <div class="form-floating mb-3">
@@ -19,18 +19,18 @@
                 <label for="password" class="text-black">Password</label>
                 <i class="fas fa-eye toggle-password" id="togglePasswordIcon"></i>
               </div>
-              <div class="form-check mb-3">
+              <!--<div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
                 <label class="form-check-label text-black" for="rememberPasswordCheck">
                   Remember for 30 days
                 </label>
-              </div>
+              </div>-->
               <div class="d-grid mb-3">
                 <button class="btn btn-info btn-login text-uppercase text-white fw-bold" type="submit" style="background-color:#295bac;">Log in</button>
               </div>
             </form>
             <p class="auth-link text-center text-black"><a>Don't have an account?</a> <a href="register" style="color: blue;">Sign Up</a></p>
-            <p class="auth-link text-center text-black"><a href="forgot_password" style="color: blue;">Forgot your Password?</a></p>
+            <!--<p class="auth-link text-center text-black"><a href="forgot_password" style="color: blue;">Forgot your Password?</a></p>-->
           </div>
         </div>
       </div>

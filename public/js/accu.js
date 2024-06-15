@@ -4,7 +4,7 @@ function showEditProfile() {
 }
 
 async function updateProfile() {
-    const userId = localStorage.getItem('user_id'); // pastikan user_id disimpan di localStorage
+    const userId = localStorage.getItem('user_id'); 
     const updatedName = document.getElementById('editNama').value;
 
     if (!userId) {
@@ -16,7 +16,7 @@ async function updateProfile() {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}` // pastikan token akses disimpan di localStorage
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}` 
         },
         body: JSON.stringify({ nama: updatedName })
     });

@@ -19,31 +19,21 @@
                 <label for="password" class="text-black">Password</label>
                 <i class="fas fa-eye toggle-password" id="togglePasswordIcon"></i>
               </div>
-              <!--<div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                <label class="form-check-label text-black" for="rememberPasswordCheck">
-                  Remember for 30 days
-                </label>
-              </div>-->
               <div class="d-grid mb-3">
                 <button class="btn btn-info btn-login text-uppercase text-white fw-bold" type="submit" style="background-color:#295bac;">Log in</button>
               </div>
             </form>
             <p class="auth-link text-center text-black"><a>Don't have an account?</a> <a href="register" style="color: blue;">Sign Up</a></p>
-            <!--<p class="auth-link text-center text-black"><a href="forgot_password" style="color: blue;">Forgot your Password?</a></p>-->
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <script>
     document.getElementById('loginForm').addEventListener('submit', async function(event) {
       event.preventDefault();
-      
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-
       try {
         const response = await fetch('https://balance-back-end-production.up.railway.app/api/auth/login', {
           method: 'POST',
@@ -55,26 +45,18 @@
             password: password
           })
         });
-
         if (!response.ok) {
           const errorMessage = await response.text();
           throw new Error(errorMessage);
         }
-
         const responseData = await response.json();
-
-        // Simpan informasi dari respons login ke dalam localStorage
         localStorage.setItem('access_token', responseData.access_token);
         localStorage.setItem('user_id', responseData.user.id_pengguna);
         localStorage.setItem('user_name', responseData.user.nama);
         localStorage.setItem('user_email', responseData.user.email);
-
-        // Redirect ke halaman home setelah login berhasil
         window.location.href = '/home';
-
       } catch (error) {
         console.error('Terjadi kesalahan saat login:', error.message);
-        // Tampilkan pesan kesalahan kepada pengguna jika login gagal
       }
     });
   </script>

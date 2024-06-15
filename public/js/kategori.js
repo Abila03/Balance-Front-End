@@ -1,38 +1,41 @@
 $(document).ready(function() {
-  // Lakukan HTTP request ke API
-  $.ajax({
-  url: "http://localhost/balance/dist/kategoriC", // Ganti dengan URL API Anda
-  method: "GET", // Sesuaikan dengan metode API Anda
-  success: function(response) {
-      // Proses data JSON yang dikembalikan
-      if (response.status === "success") {
-      var artikelList = response.data;
-      
-      // Buat elemen HTML untuk menampilkan data artikel
-      for (var i = 0; i < artikelList.length; i++) {
-          var artikel = artikelList[i];
-          var kategori = artikel.nama_kategori;
-          var deskripsi = artikel.deskripsi;
-          var html = 
-                "<div class='col mb-5'>" +
-                    "<div class='card h-100' style='background-color: #404040;'>" +
-                        "<div class='card-body p-3'>" +
-                          "<div class='text-white'>" +
-                              "<h5 class='fw-bolder text-center'>" + kategori + "</h5>" +
-                              "<p>" + deskripsi + "</p>" +
-                          "</div>" +
-                        "</div>" +
-                    "</div>"+//; 
-                "</div>";
-          // Tambahkan elemen HTML ke container
-          $("#artikel-container").append(html);
-      }
-      } else {
-      console.error("Error:", response.message);
-      }
-  },
-  error: function(error) {
-      console.error("Error:", error);
-  }
-  });
+    $('#article-form').submit(function(e) {
+        e.preventDefault(); // Mencegah form untuk melakukan submit secara default
+
+        // Mengambil data dari form
+        var judul = $('#article-title').val();
+        var kategori = $('#article-category').val();
+        var isi = $('#summernote').val();
+
+        // Mengambil id_pengguna dari localStorage
+        var id_pengguna = localStorage.getItem('user_id');
+
+        // Mengirim data ke endpoint
+        fetch('https://balance-back-end-production.up.railway.app/api/artikel', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                judul: judul,
+                id_pengguna: id_pengguna, // Menggunakan id_pengguna dari localStorage
+                kategori: kategori,
+                isi: isi
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add article');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Article published successfully');
+            // Lakukan sesuatu setelah artikel berhasil dipublish, seperti mengarahkan pengguna ke halaman lain
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to publish article. Please try again later.');
+        });
+    });
 });
